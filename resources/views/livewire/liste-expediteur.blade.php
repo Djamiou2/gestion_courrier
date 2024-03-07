@@ -73,7 +73,41 @@
                                 <td>{{ $item->adresse }}</td>
                                 <td>{{ $item->email }}</td>
                                 {{-- <td class="text-center">{{$item->created_at->diffForHumans()}}</td> --}}
-                                <td class="text-center">
+
+                                {{-- Boutons --}}
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">Actions</font>
+                                            </font>
+                                        </button>
+                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                            <span class="sr-only">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Basculer la liste déroulante
+                                                    </font>
+                                                </font>
+                                            </span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu" style="">
+                                            <a class="dropdown-item" href="{{ route('expediteurs.edit', $item->id) }}">
+                                                <i class="fas fa-edit" aria-hidden="true"></i>
+                                                Modifier
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                    data-target="#DeleteModal{{ $item->id }}">
+                                                    <i class="fas fa-trash-alt"></i>Supprimer
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+
+
+                                {{-- <td class="text-center">
                                     <a href="{{ route('expediteurs.edit', $item->id) }}"
                                         class="btn btn-primary text-white mr-4">
                                         <i class="fas fa-edit" aria-hidden="true"></i>
@@ -82,7 +116,7 @@
                                         data-target="#DeleteModal{{ $item->id }}">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-                                </td>
+                                </td> --}}
                             </tr>
 
                             <!-- Modal -->

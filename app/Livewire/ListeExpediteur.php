@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Expediteur;
 use App\Models\Expediteurs;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -28,6 +29,7 @@ class ListeExpediteur extends Component
   }
     public function render()
     {
+      Carbon::setLocale('fr');
         $listeExpediteur = Expediteurs::latest()->paginate(10);
         return view('livewire.liste-expediteur', compact('listeExpediteur') );
     }

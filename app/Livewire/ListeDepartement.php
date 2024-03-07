@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Departement;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -61,6 +62,9 @@ class ListeDepartement extends Component
 
     public function render()
     {
+
+    // pour changer la langue en français
+     Carbon::setLocale('fr');
 
         $departements = Departement::latest()->paginate(10);
 

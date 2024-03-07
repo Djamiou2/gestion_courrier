@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Profil;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -53,6 +54,8 @@ class ListeProfil extends Component
 
     public function render()
     {
+              // pour changer la langue en français
+      Carbon::setLocale('fr');
         // récuperer la liste des profils
         $profils = Profil::latest()->paginate(10);
 

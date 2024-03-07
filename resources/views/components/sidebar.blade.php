@@ -1,7 +1,7 @@
 <aside class="control-sidebar control-sidebar-dark">
 
     <div class="p-3">
-        <div class="card" style="background: #42C2FF;">
+        <div class="card" style="background: #0a0a0e97;">
             <div class="card-body bg-dark box-profile">
                 <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle" src="{{ asset('images/user_color.png') }}"

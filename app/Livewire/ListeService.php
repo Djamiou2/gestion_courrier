@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Departement;
 use App\Models\Profil;
 use App\Models\Service;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -62,6 +63,9 @@ class ListeService extends Component
     }
     public function render()
     {
+
+              // pour changer la langue en français
+      Carbon::setLocale('fr');
 
         $listeServices = Service::latest()->paginate(10);
 

@@ -83,7 +83,7 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->profil->nom }}</td>
                                 <td class="text-center">{{ $user->created_at->diffForHumans() }}</td>
-                                <td class="text-center">
+                                {{-- <td class="text-center">
                                     <a href="{{ route('admin.users.users.edit', $user->id) }}"
                                         class="btn btn-primary text-white mr-4">
                                         <i class="fa fa-edit" aria-hidden="true"></i>
@@ -93,7 +93,40 @@
                                         data-target="#DeleteModal{{ $user->id }}">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
+                                </td> --}}
+
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">Actions</font>
+                                            </font>
+                                        </button>
+                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                            <span class="sr-only">
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">Basculer la liste déroulante
+                                                    </font>
+                                                </font>
+                                            </span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu" style="">
+                                            <a class="dropdown-item"
+                                                href="{{ route('admin.users.users.edit', $user->id) }}">
+                                                <i class="fas fa-edit" aria-hidden="true"></i>
+                                                Modifier
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                    data-target="#DeleteModal{{ $user->id }}">
+                                                    <i class="fas fa-trash-alt"></i>Supprimer
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </td>
+
                             </tr>
 
                             <!-- Modal -->

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departement;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Courrier;
+use App\Models\Service;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+      $userCount= User::count();
+      
+      $mailCount= Courrier::count();
+
+
+      // courriers sortants
+      $mailSendCount= Courrier::where('type','=','sortant')->count();
+
+      // courriers entrants
+      $recevingMailCount= Courrier::where('type','=','entrant')->count();
+
+      $departmentCount = Departement::count();
+      $serviceCount = Service::count();
+
+        return view('home', compact('userCount','mailCount', 'mailSendCount','recevingMailCount',
+         'departmentCount', 'serviceCount' ));
     }
 }

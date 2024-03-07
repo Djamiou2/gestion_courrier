@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Destinataire;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -25,6 +26,8 @@ class ListeDestinataire extends Component
   }
     public function render()
     {
+      // pour changer la langue en français
+      Carbon::setLocale('fr');
         $listeDestinataire = Destinataire::latest()->paginate(10);
         return view('livewire.liste-destinataire', compact('listeDestinataire'));
     }

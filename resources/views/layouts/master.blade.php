@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html lang="en">
 
 <head>
@@ -27,13 +24,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <div class="wrapper">
 
-        <nav class="main-header navbar navbar-expand" style="background: #42C2FF;">
+        <nav class="main-header navbar navbar-expand layout-navbar-fixed " style="background: #040404f5;">
 
             <!-- navbar-white navbar-light -->
             <ul class="navbar-nav ml-auto ">
                 <!-- Pour integrer le top navbar -->
                 <x-topnavbar />
-                <aside class="main-sidebar sidebar-dark-primary elevation-4 text-bold" style="background: #42C2FF; ">
+                <aside class="main-sidebar sidebar-dark-primary elevation-4 text-bold" style="background: #040404f5; ">
 
                     <div class="sidebar">
 
@@ -52,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                         </div>
                         <!-- Pour integrer le menu -->
-                        <div class=" text-black" style="font-family: 'Arial' , sans-serif; ">
+                        <div class=" text-black " style="font-family: 'Arial' , sans-serif; ">
                             <x-menu />
                         </div>
                     </div>

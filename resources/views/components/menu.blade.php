@@ -1,4 +1,4 @@
-<nav class="mt-2 " style="font-size: 12px; font-family: Arial;">
+<nav class="mt-2 text-custom " style="font-size: 12px; font-family: Arial;">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
         <li class="nav-item {{ setMenuClasse('home', 'menu-open') }}">
@@ -141,3 +141,14 @@
     </ul>
 
 </nav>
+
+
+<style>
+    .text-custom {
+        color: #d2bdbdf5;
+    }
+
+    a {
+        color: #d2bdbdf5;
+    }
+</style>

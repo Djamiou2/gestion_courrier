@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Profil;
 use App\Models\Service;
 use App\Models\User;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Contracts\Validation\Rule;
 use Livewire\Component;
@@ -103,6 +104,10 @@ class ListeUser extends Component
 
   public function render()
   {
+
+          // pour changer la langue en français
+      Carbon::setLocale('fr');
+
     $word = '%' . $this->search . '%';
     if (!empty($this->search)) {
       $users = User::where('nom', 'like', $word)
