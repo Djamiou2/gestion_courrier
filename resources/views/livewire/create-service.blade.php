@@ -31,7 +31,7 @@
                 </h3>
             </div>
 
-            <form role="form" wire:submit.prevent="store" method="POST">
+            {{--   <form role="form" wire:submit.prevent="store" method="POST">
                 @csrf
                 @method('POST')
 
@@ -73,7 +73,70 @@
         </div>
         <!-- /.card-body -->
         </form>
+        </div> --}}
+            <!-- /.card -->
+
+            <div class="card-body">
+                @foreach ($inputs as $key => $value)
+                    <div class="row">
+
+                        {{-- bouton ajouter (+) --}}
+                        <div class="col-md-1">
+                            <button type="button" wire:click="add"
+                                class="btn btn-primary rounded-circle ml-2 add-button"
+                                style="width: 30px; height: 30px; padding: 0; position: relative;">
+                                <i class="fas fa-plus"
+                                    style="font-size: 16px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
+                            </button>
+                        </div>
+
+                        <div class="col-md-5">
+                            <label>Le département</label>
+                            <div class=" d-flex align-items-center">
+                                <select class="form-control @error('departement_id') is-invalid @enderror"
+                                    wire:model="inputs.{{ $key }}.departement_id" name="departement_id">
+                                    <option value="">-----</option>
+                                    @foreach ($listeDepartements as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nom }}</option>
+                                    @endforeach
+                                </select>
+                                @error('inputs.' . $key . '.departement_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 ">
+                            <label>Nom du Service</label>
+                            <input wire:model="inputs.{{ $key }}.nom" type="text" class="form-control"
+                                placeholder="nom" name="nom">
+                            @error('inputs.' . $key . '.nom')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Bouton de soustration (-) --}}
+                        <div class="col-md-1">
+                            <button type="button" wire:click="remove({{ $key }})"
+                                class="btn btn-danger rounded-circle ml-2 add-button"
+                                style="width: 30px; height: 30px; padding: 0; position: relative;">
+                                <i class="fas fa-minus-circle"
+                                    style="font-size: 16px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <br>
+                @endforeach
+
+                <div class="p-2 d-flex justify-content-between">
+                    <a href="{{ route('admin.services') }}">
+                        <button type="button" class="btn btn-danger">Retour à la liste</button>
+                    </a>
+                    <button wire:click="save" class="btn btn-success btn-sm">Enregistrer</button>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-    <!-- /.card -->
-</div>
-</div>

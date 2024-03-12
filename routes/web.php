@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AffectationController;
 use App\Http\Controllers\CourrierController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\DestinataireController;
@@ -92,7 +93,7 @@ Route::middleware('auth')->group(function () {
      Route::prefix('expediteurs')->group(
         function () {
             Route::get('/', [ExpediteursController::class, 'index'])->name('expediteurs');
-            Route::post('/create', [ExpediteursController::class, 'create'])->name('expediteurs.create');
+            Route::get('/create', [ExpediteursController::class, 'create'])->name('expediteurs.create');
             Route::get('/edit-expediteur/{expediteur}', [ExpediteursController::class, 'edit'])->name('expediteurs.edit');
             Route::get('/{expediteur}', [ExpediteursController::class, 'show'])->name('expediteurs.show');
         }
@@ -110,14 +111,14 @@ Route::middleware('auth')->group(function () {
 
 
     // routes pour gerer les instructions
-    Route::prefix('instructions')->group(
-        function () {
-            Route::get('/', [InstructionController::class, 'index'])->name('instructions');
-            Route::get('/create', [InstructionController::class, 'create'])->name('instructions.create');
-            Route::get('/edit-instruction/{instruction}', [InstructionController::class, 'edit'])->name('instructions.edit');
-            Route::get('/{instruction}', [InstructionController::class, 'show'])->name('instructions.show');
-        }
-    );
+   //  Route::prefix('instructions')->group(
+    //     function () {
+    //         Route::get('/', [InstructionController::class, 'index'])->name('instructions');
+    //         Route::get('/create', [InstructionController::class, 'create'])->name('instructions.create');
+    //         Route::get('/edit-instruction/{instruction}', [InstructionController::class, 'edit'])->name('instructions.edit');
+    //         Route::get('/{instruction}', [InstructionController::class, 'show'])->name('instructions.show');
+    //     }
+    // );
 
     // routes pour les natures de courriers
     Route::prefix('natures_courriers')->group(
@@ -126,6 +127,14 @@ Route::middleware('auth')->group(function () {
             Route::get('/create', [NatureCourrierController::class, 'create'])->name('natures_courriers.create');
             Route::get('/edit-nature_courrier/{nature_courrier}', [NatureCourrierController::class, 'edit'])->name('natures_courriers.edit');
             Route::get('/{nature_courrier}', [NatureCourrierController::class, 'show'])->name('natures_courriers.show');
+        }
+    );
+
+    // routes pour la page d'affection
+    Route::prefix('affectations')->group(
+        function () {
+            Route::get('/', [AffectationController::class, 'index'])->name('affectations');
+            Route::get('/create', [AffectationController::class, 'create'])->name('affectations.create');
         }
     );
 

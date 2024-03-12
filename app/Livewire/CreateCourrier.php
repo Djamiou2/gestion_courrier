@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Courrier;
+use App\Models\Departement;
 use App\Models\Destinataire;
 use App\Models\Expediteurs;
 use App\Models\NatureCourrier;
@@ -18,8 +19,9 @@ class CreateCourrier extends Component
     use WithFileUploads;
     public $objet;
     public $contenu;
+    public $date_signature;
     public $date_arrivee;
-    public $date_envoi;
+    public $date_envoie;
     public $delai_de_traitement;
     public $importance;
     public $expediteur_id;
@@ -27,50 +29,68 @@ class CreateCourrier extends Component
     public $service_id;
     public $user_id;
     public $nature_id;
-    public $pieces_jointes;
+    public $fichier;
     public $type;
     public $courrier;
+    public $contenuDuFichier;
 
+    public $currentStep=1;
+    public $total_steps=3;
+
+    // public $inputs;
+
+    //  public function mount(){
+    //    $this->fill([
+    //         'inputs'=>collect(['nom'=>''])
+   //      ]);
+   //  }
+ 
 public function store (Courrier $courrier )
     {
     $this->validate([
-    'objet' => 'required|string',
-    'contenu' => 'required|string',
-    'pieces_jointes' => 'mimes:pdf,xlsx,csv|max:2048', // Ajout des types de fichiers autorisés et la taille maximale en kilo-octets (2 Mo).
-    'date_arrivee' => 'date|nullable|before_or_equal:today',
-    'date_envoi' => 'date|nullable', // Ajout de la validation pour les dates qui peuvent être nulles.
-    'delai_de_traitement' => 'string',
+     'objet' => 'required|string',
+     'contenu' => 'required|string',
+     'fichier' => 'mimes:jpg,jpeg,png,pdf|max:2048', 
+     'date_arrivee' => 'date|required|before_or_equal:today',
+     'date_signature' => 'date', 
+     'date_envoie' => 'nullable', 
+     'delai_de_traitement' => 'string|required',
     'importance' => 'nullable',
-    'type' => 'required',
-    'nature_id' => 'required',
-    'service_id' => 'nullable', // Validation ajoutée pour les cas où le champ peut être nul.
-    'user_id' => 'required',
-    'expediteur_id' => 'required',
-    'destinataire_id' => 'nullable',
+     'type' => 'required',
+     'nature_id' => '',
+     'service_id' => '',
+     'user_id' => '',
+     'expediteur_id' => '',
+     'destinataire_id' => '',
     ], [
     'objet.required' => "L'objet est obligatoire.",
     'contenu.required' => "Le contenu est obligatoire.",
-    'pieces_jointes.mimes' => 'Les pièces jointes doivent être au format PDF, XLSX ou CSV.',
-    'pieces_jointes.max' => 'La taille des pièces jointes ne doit pas dépasser 2 Mo.',
+    'fichier.mimes' => 'Les pièces jointes doivent être au format PDF, XLSX ou CSV.',
+    'fichier.max' => 'La taille des pièces jointes ne doit pas dépasser 2 Mo.',
     'date_arrivee.date' => 'La date d\'arrivée doit être une date valide.',
+    'date_arrivee.required' => 'La date d\'arrivée est obligatoire.',
     'date_arrivee.before_or_equal' => 'La date d\'arrivée doit être antérieure ou égale à la date actuelle.',
-    'date_envoi.date' => 'La date d\'envoi doit être une date valide.',
-    'delai_de_traitement.string' => 'Le délai de traitement doit être une chaîne de caractères.',
+    'date_signature.date' => 'La date d\'envoi doit être une date valide.',
+    'delai_de_traitement.required' => 'Le délai de traitement est obligatoire',
     'importance.nullable' => 'L\'importance peut être une valeur nulle ou valide.',
     'type.required' => 'Le type de courrier est obligatoire.',
+    'date_signature.required'=> 'la date de signature est obligatoire',
     'nature_id.required' => 'La nature est obligatoire.',
     'service_id.nullable' => 'Le service doit être une valeur nulle ou valide.',
     'user_id.required' => 'L\'utilisateur est obligatoire.',
     'expediteur_id.required' => 'L\'expéditeur est obligatoire.',
     'destinataire_id.nullable' => 'Le destinateur doit être une valeur nulle ou valide.',
     ]);
+    
 
     try {
-        $courrier =new Courrier();
+
+        $courrier = new Courrier();
         $courrier->objet = $this->objet;
         $courrier->contenu = $this->contenu;
         $courrier->date_arrivee = $this->date_arrivee;
-        $courrier->date_envoi = $this->date_envoi;
+        $courrier->date_envoie = $this->date_envoie;
+        $courrier->date_signature = $this->date_signature;
         $courrier->delai_de_traitement = $this->delai_de_traitement;
         $courrier->importance = $this->importance;
         $courrier->type = $this->type;
@@ -79,18 +99,22 @@ public function store (Courrier $courrier )
         $courrier->destinataire_id = $this->destinataire_id;
         $courrier->service_id = $this->service_id;
         $courrier->user_id = Auth::user()->id;
-        $courrier->save();
-       // toastr()->success('Le courrier a été enregistré avec succès!', 'Félicitations',
-          //   ['positionClass' => 'toast-bottom-right']);
-            return redirect()->Route('courriers');
-    }
- catch (Exception $e) {
 
+        $courrier->fichier =$this->fichier;
+        $courrier->save();
+        // $courrier->fichier =$this->fichier->store('mes_fichiers', 'fichier');
+        //$courrier->fichier =$this->fichier;
+        return redirect()->Route('courriers')->with('success','Le courrier a été enregistré avec succès !!');
+        }
+        catch (Exception $e) {
+            return redirect()->back()->with('error', 'Erreur d\'enregistrement');
+        }
  }
-}
+
+   
+
     public function render()
     {
-
         $listeExpediteur = Expediteurs::all();
         // La liste des natures courrier
         $listeNature = NatureCourrier::all();
@@ -100,8 +124,42 @@ public function store (Courrier $courrier )
         // La liste des services
         $listeService = Service::all(); 
 
+        $listeDepartements = Departement::all();
+
         return view('livewire.create-courrier' , 
         compact('listeExpediteur','listeNature',
-        'listeDestinataire','listeService'));
+        'listeDestinataire','listeService', 'listeDepartements' ));
     }
+
+   //  public function remove($key){
+         //dd($key);
+   //       $this->inputs->pull($key);
+  //   }
+
+   //  public function add(){
+   //      $this->inputs->push(['nom'=>'']);
+   //  }
+
+   //  public function save(){
+  //       $validated=$this->validate(
+   //          [
+   //          'inputs.*.nom'=>'required',
+   //          ],
+   //          [
+   //              'inputs.*.nom.required'=>'Le nom de la nature est obligatoire',
+   //          ]
+   //  );
+     
+   //   foreach($this->inputs as $input){
+  //       NatureCourrier::create([
+    //         'nom'=>$input['nom'],
+           
+    //     ]);
+  //    }
+       
+   //   $this->js("alert('customers saved')");
+
+  //   }
+
+  
 }

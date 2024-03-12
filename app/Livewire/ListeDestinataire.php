@@ -28,7 +28,20 @@ class ListeDestinataire extends Component
     {
       // pour changer la langue en français
       Carbon::setLocale('fr');
-        $listeDestinataire = Destinataire::latest()->paginate(10);
+       
+
+          $word = '%' . $this->search . '%';
+
+      if (!empty($this->search)) {
+      $listeDestinataire = Destinataire::where('nom', 'like', $word)
+      ->orwhere('contact', 'like', $word)
+      ->orwhere('adresse', 'like', $word)
+        ->orwhere('email', 'like', $word)->paginate(5);
+    } else {
+      $listeDestinataire = Destinataire::latest()->paginate(10);
+    }
+
+
         return view('livewire.liste-destinataire', compact('listeDestinataire'));
     }
 }

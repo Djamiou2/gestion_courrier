@@ -1,21 +1,98 @@
 <div class="row p-4 pt-5 mb-2 ">
 
 
-    <div>
+    {{-- <div>
         @if (session()->has('message'))
             <div class="alert alert-success">
                 {{ session('message') }}
             </div>
         @endif
-    </div>
+    </div> --}}
 
-    <div>
+    {{-- @if (session('message'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                toast: true,
+                title: 'Enregistrement réussi !!',
+                /* text: 'Le service a été enregistré avec succès !!!' */
+                showConfirmButton: false,
+                timer: 3000
+            })
+        </script>
+    @endif --}}
+
+    @if (session('message'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                toast: true,
+                title: 'Service enregistré avec succès!',
+                showConfirmButton: false,
+                timer: 4000,
+                // Exemple d'ajout d'une animation personnalisée
+                showClass: {
+                    popup: 'animate__animated animate__fadeInRight'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutRight'
+                }
+            })
+        </script>
+    @endif
+
+    {{--   @if (session('delete'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                toast: true,
+                title: ' Suppression du service!',
+                showConfirmButton: false,
+                timer: 4000
+            })
+        </script>
+    @endif --}}
+    @if (session('delete'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                toast: true,
+                title: 'Suppression du service!',
+                showConfirmButton: false,
+                timer: 4000,
+                // Ajoutez d'autres propriétés personnalisées ici
+                customClass: {
+                    // Classe CSS personnalisée pour le toast
+                    container: 'custom-toast-container',
+                    popup: 'custom-toast-popup',
+                    icon: 'custom-toast-icon',
+                    title: 'custom-toast-title',
+                    timer: 'custom-toast-timer'
+                },
+                // Exemple d'ajout d'une animation personnalisée
+                showClass: {
+                    popup: 'animate__animated animate__fadeInRight'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutRight'
+                }
+                // Ajoutez d'autres propriétés selon vos besoins
+            });
+        </script>
+    @endif
+
+
+    {{-- <div>
         @if (session()->has('delete'))
             <div class="alert alert-danger">
                 {{ session('delete') }}
             </div>
         @endif
-    </div>
+    </div> --}}
 
     <!-- Boutons imprimer et ajouter -->
     <div class="col-12 justify-between align-items-center">
@@ -53,12 +130,12 @@
 
                     <div class="input-group input-group-md" style="width: 230px;">
                         <input type="text" name="table_search" class="form-control float-right"
-                            placeholder="Recherche">
-                        <div class="input-group-append">
+                            placeholder="Recherche" wire:model.live='search'>
+                        {{-- <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

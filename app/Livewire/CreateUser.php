@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class CreateUser extends Component
 {
-    public $nom;
+  public $nom;
   public $prenom;
   public $sexe;
   public $contact;
@@ -47,11 +47,6 @@ class CreateUser extends Component
     );
 
     // conditions pour verifier s'il y a deja un utilisateur avec le profil "chefservice"
-    $user = User::where('profil_id', 3)->first();
-    if ($user) {
-      return redirect()->back()->with('error', 'Il y a déjà un chef service');
-    } else {
-
       try {
         $user = new User();
         $user->nom = $this->nom;
@@ -61,11 +56,7 @@ class CreateUser extends Component
         $user->email = $this->email;
         $user->profil_id = $this->profil_id;
         $user->service_id = $this->service_id;
-        // Pour donner une valeur par défaut pour le Password
-        $user->password = bcrypt('password');
-
         $user->save();
-        //toastr()->success('L\'utilisateur a été enregistré avec succès', 'Félicitations', ['positionClass' => 'toast-top-center']);
         return redirect()->route('admin.users.users')->with('message', 'L\'utilisateur a été enregistré avec succès');
 
       } catch (\Exception $e) {
@@ -73,14 +64,12 @@ class CreateUser extends Component
         return redirect()->back();
       }
 
-    }
   }
-
 
     public function render()
     {
+      
         $profils = Profil::all();
-
     // récupéerer la liste des services
     $services = Service::all();
         return view('livewire.create-user', compact('profils', 'services'));

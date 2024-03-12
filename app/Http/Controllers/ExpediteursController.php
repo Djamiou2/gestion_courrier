@@ -24,6 +24,6 @@ class ExpediteursController extends Controller
 
     public function show(Expediteurs $expediteurs)
     {
-        return view('Expediteur.show', compact('expediteur'));
+        return view('Expediteur.show', compact('expediteurs'));
     }
 }

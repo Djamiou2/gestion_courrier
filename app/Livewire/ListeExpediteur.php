@@ -13,7 +13,7 @@ class ListeExpediteur extends Component
 
     // Pour afficher la liste des utilisateurs
 
-  public $search = "";
+  public $search="";
 
   use WithPagination;
 
@@ -30,7 +30,17 @@ class ListeExpediteur extends Component
     public function render()
     {
       Carbon::setLocale('fr');
-        $listeExpediteur = Expediteurs::latest()->paginate(10);
+      
+      $word = '%' . $this->search . '%';
+
+      if (!empty($this->search)) {
+      $listeExpediteur = Expediteurs::where('nom', 'like', $word)
+      ->orwhere('contact', 'like', $word)
+      ->orwhere('adresse', 'like', $word)
+        ->orwhere('email', 'like', $word)->paginate(5);
+    } else {
+     $listeExpediteur = Expediteurs::latest()->paginate(10);
+    }
         return view('livewire.liste-expediteur', compact('listeExpediteur') );
     }
 }

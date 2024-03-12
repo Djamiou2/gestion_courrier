@@ -1,7 +1,5 @@
 @extends('layouts.master')
 
 @section('content')
-    <p>
-        page de details
-    </p>
+    @livewire('show-expediteur', ['expediteurs' => $expediteur])
 @endsection

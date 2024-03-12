@@ -41,18 +41,18 @@
 
                 <h3 class="card-title flex-grow-1 ">
                     <i class="nav-icon fas fa-users fa-2x"></i>
-                    Liste des utilisateurs
+                    Liste des employées
                 </h3>
                 <div class="card-tools d-flex align-items-center ">
 
                     <div class="input-group input-group-md" style="width: 225px;">
                         <input type="text" name="table_search" class="form-control float-right"
-                            placeholder="Recherche" wire:model="search">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
+                            placeholder="Recherche" wire:model.live="search" {{-- wire:model="search" --}}>
+                        {{-- <div class="input-group-append">
+                            <button type="submit"  class="btn btn-default">
                                 <i class="fas fa-search"></i>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -83,18 +83,6 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->profil->nom }}</td>
                                 <td class="text-center">{{ $user->created_at->diffForHumans() }}</td>
-                                {{-- <td class="text-center">
-                                    <a href="{{ route('admin.users.users.edit', $user->id) }}"
-                                        class="btn btn-primary text-white mr-4">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </a>
-
-                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#DeleteModal{{ $user->id }}">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </td> --}}
-
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info">

@@ -4,9 +4,7 @@
         <li class="nav-item {{ setMenuClasse('home', 'menu-open') }}">
             <a href="{{ route('home') }}" class="nav-link  {{ setMenuClasse('home', 'active') }}">
                 <i class="nav-icon fas fa-home"></i>
-                <p>
-                    ACCEUIL
-                </p>
+                <p>TABLEAU DE BORD </p>
             </a>
         </li>
 
@@ -45,11 +43,19 @@
                 <a href="#" class="nav-link  {{ setMenuClasse('admin.users.', 'active') }}">
                     <i class="nav-icon fas fa-users"></i>
                     <p>
-                        EMPLOYES/PROFILS
+                        GESTION EMPLOYES
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin.users.users.create') }}"
+                            class="nav-link {{ setMenuActive('admin.users.users.create') }} ">
+                            <i class="nav-icon fas fa-plus"></i>
+                            <p>Ajouter</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ route('admin.users.users') }}"
                             class="nav-link {{ setMenuActive('admin.users.users') }} ">
@@ -57,13 +63,13 @@
                             <p>Liste employés</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{--  <li class="nav-item">
                         <a href="{{ route('admin.profils.profils') }}"
                             class="nav-link {{ setMenuActive('admin.profils.profils') }} ">
                             <i class="fas fa-list-ul"></i>
                             <p>Liste profils</p>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
         @endcan
@@ -138,6 +144,8 @@
             </a>
         </li>
 
+
+
     </ul>
 
 </nav>
@@ -145,10 +153,10 @@
 
 <style>
     .text-custom {
-        color: #d2bdbdf5;
+        color: hsl(0, 100%, 99%);
     }
 
     a {
-        color: #d2bdbdf5;
+        color: hsl(0, 100%, 99%);
     }
 </style>

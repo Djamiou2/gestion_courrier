@@ -50,12 +50,12 @@
 
                     <div class="input-group input-group-md" style="width: 230px;">
                         <input type="text" name="table_search" class="form-control float-right"
-                            placeholder="Recherche">
-                        <div class="input-group-append">
+                            placeholder="Recherche" wire:model.live='search'>
+                        {{-- <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

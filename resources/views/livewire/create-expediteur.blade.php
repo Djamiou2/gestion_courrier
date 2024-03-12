@@ -25,7 +25,7 @@
                             icon: 'success',
                             toast: true,
                             title: '  {{ session('
-                                            message ') }}',
+                                                                                                                                                            message ') }}',
                             showConfirmButton: false,
                             timer: 3000
                         })
@@ -74,13 +74,15 @@
 
 
 
-                    <div class="p-5">
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <div class="p-2 d-flex justify-content-between">
 
                         <a href="{{ route('expediteurs') }}">
                             <button type="button" class="btn btn-danger">
-                                Retouner à la liste des expéditeurs</button>
+                                Retouner à la liste </button>
                         </a>
+
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+
                     </div>
                 </div>
             </form>

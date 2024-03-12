@@ -78,27 +78,9 @@
                                 <td>{{ $item->expediteur->nom }}</td>
                                 <td>
                                     <a href="#" class="btn btn-secondary">
-                                        {{--  <i class="fa-sharp fa-solid fa-file-arrow-down"></i> --}}
                                         <i class="fas fa-download"></i>
                                     </a>
                                 </td>
-                                {{-- <td class="text-center">{{$item->created_at->diffForHumans()}}</td> --}}
-
-                                {{-- <td class="text-center">
-                                    <a href="{{ route('courriers.edit', $item->id) }}"
-                                        class="btn btn-primary text-white mr-4">
-                                        <i class="fas fa-edit" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="{{ route('courriers.show', $item->id) }}"
-                                        class="btn btn-primary text-white mr-4">
-                                        {{-- <i class="fas fa-eye" aria-hidden="true"></i> --}}
-
-                                {{--   </a>
-                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#DeleteModal{{ $item->id }}">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </td> --}}
 
                                 <td>
                                     <div class="btn-group">

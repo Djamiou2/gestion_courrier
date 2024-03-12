@@ -15,8 +15,14 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
     <link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
     <script src="vendor/select2/dist/js/select2.min.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
 
@@ -24,13 +30,13 @@
 
     <div class="wrapper">
 
-        <nav class="main-header navbar navbar-expand layout-navbar-fixed " style="background: #040404f5;">
+        <nav class="main-header navbar navbar-expand layout-navbar-fixed " style="background: #4682B4;">
 
             <!-- navbar-white navbar-light -->
             <ul class="navbar-nav ml-auto ">
                 <!-- Pour integrer le top navbar -->
                 <x-topnavbar />
-                <aside class="main-sidebar sidebar-dark-primary elevation-4 text-bold" style="background: #040404f5; ">
+                <aside class="main-sidebar sidebar-dark-primary elevation-4 text-bold" style="background: #4682B4; ">
 
                     <div class="sidebar">
 
@@ -41,11 +47,13 @@
                         </a>
 
                         <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
+
                             <div class="image">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                                <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                                    alt="User Image">
                             </div>
                             <div class="info">
-                                <a href="#" class="d-block">User Name </a>
+                                <a href="#" class="d-block">{{ getUserFullName() }} </a>
                             </div>
                         </div>
                         <!-- Pour integrer le menu -->
@@ -70,7 +78,7 @@
                 </div>
 
                 <!-- Pour integrer le footer -->
-                <x-footer />- ./wrapper -->
+                <x-footer />
 
                 <!-- jQuery -->
                 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

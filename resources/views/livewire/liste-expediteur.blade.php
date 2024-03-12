@@ -24,9 +24,6 @@
             <button type="button" class="btn btn-primary">
                 <a href="{{ route('expediteurs.create') }}" class="text-white fs-6" style="text-decoration:none;">
                     <i class="fas fa-plus"></i>Ajouter expediteur</a></button>
-            {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddNewModal">Ajouter
-                expediteur</button> --}}
-            {{-- @include('modals.modals_ajouts.modal_create_profil') --}}
         </div>
     </div>
     <div class="col-12">
@@ -40,12 +37,12 @@
 
                     <div class="input-group input-group-md" style="width: 230px;">
                         <input type="text" name="table_search" class="form-control float-right"
-                            placeholder="Recherche">
-                        <div class="input-group-append">
+                            placeholder="Recherche" wire:model.live='search'>
+                        {{-- <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

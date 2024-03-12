@@ -9,9 +9,28 @@ class Courrier extends Model
 {
     use HasFactory;
 
+    //protected $fillable = [
+      //  "objet",
+       // "contenu",
+     //   "fichier",
+      //  "date_arrivee",
+      //  "date_envoie",
+      //  "delai_de_traitement",
+      //  "importance",
+      //  "date_signature",
+       // "type",
+      //  "nature_id",
+      //  "service_id",
+       // "expediteur_id",
+       // "destinataire_id",
+       // "user_id",
+       // ];
+
+        protected $guarded = [''];
+
     public function nature()
     {
-        return $this->belongsTo(NatureCourrier::class, "nature_id");
+        return $this->belongsTo(NatureCourrier::class, 'nature_id');
     }
 
     

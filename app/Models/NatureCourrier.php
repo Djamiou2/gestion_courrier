@@ -11,6 +11,6 @@ class NatureCourrier extends Model
 
     public function courrier()
     {
-        return $this->belongsTo(NatureCourrier::class);
+        return $this->belongsToMany(Courrier::class);
     }
 }

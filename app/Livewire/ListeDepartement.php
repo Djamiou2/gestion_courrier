@@ -32,6 +32,8 @@ class ListeDepartement extends Component
 
     public $departement;
 
+        public $search ="";
+
     public function store(Departement $departement)
     {
         // règles de validation
@@ -65,8 +67,15 @@ class ListeDepartement extends Component
 
     // pour changer la langue en français
      Carbon::setLocale('fr');
-
+        $word = '%' . $this->search . '%';
+    
+    if (!empty($this->search)) {
+      $departements = Departement::where('nom', 'like', $word)->paginate(5);
+    } else {
         $departements = Departement::latest()->paginate(10);
+     
+    }
+
 
         return view('livewire.liste-departement', compact('departements'));
     }

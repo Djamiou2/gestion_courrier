@@ -1,5 +1,5 @@
 <div class="row p-4 pt-5  ">
-    <div class="col-10 align-items-center justify-content-center mb-2 ">
+    <div class="col-8 align-items-center justify-content-center mb-2 ">
         <!-- general form elements -->
         <div class="card card-primary">
             <div class="card-header">
@@ -26,7 +26,7 @@
                             icon: 'success',
                             toast: true,
                             title: '  {{ session('
-                                      message ') }}',
+                                                                                                                                                      message ') }}',
                             showConfirmButton: false,
                             timer: 3000
                         })
@@ -119,35 +119,19 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-
-                    <div class="p-5">
-                        <button type=" submit" class="btn btn-primary">Enregistrer</button>
+                    <div class="p-2 d-flex justify-content-between">
 
                         <a href="{{ route('admin.users.users') }}">
                             <button type="button" class="btn btn-danger">Retouner à la liste des
                                 utilisateurs</button>
                         </a>
+
+                        <button type=" submit" class="btn btn-primary">Enregistrer</button>
+
+
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-@livewireScripts()
-<script>
-    document.addEventListener('livewire:load', function() {
-        Livewire.on('user-created', function() {
-            // Gérer l'événement côté client
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                toast: true,
-                title: 'Utilisateur créé avec succès !',
-                sho
-                wConfirmButton: false,
-                timer: 3000
-            });
-        });
-    });
-</script>

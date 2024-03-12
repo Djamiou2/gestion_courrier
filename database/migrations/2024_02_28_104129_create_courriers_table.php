@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->string('fichier')->nullable();
 
-            $table->date('date_signature');
+            $table->date('date_signature')->nullable();
             
             $table->date('date_arrivee')->nullable();
 

@@ -87,7 +87,7 @@ class ListeUser extends Component
 
   // Pour afficher la liste des utilisateurs
 
-  public $search = "";
+  public $search="";
 
   use WithPagination;
 
@@ -109,11 +109,12 @@ class ListeUser extends Component
       Carbon::setLocale('fr');
 
     $word = '%' . $this->search . '%';
+    
     if (!empty($this->search)) {
       $users = User::where('nom', 'like', $word)
-        ->orwhere('prenom', 'like', $word);
+        ->orwhere('prenom', 'like', $word)
+        ->orwhere('email', 'like', $word)->paginate(5);
     } else {
-
       $users = User::latest()->paginate(10);
     }
 

@@ -19,6 +19,7 @@ class ListeService extends Component
     public $nom;
 
     public $departement_id;
+    public $search = "";
 
 
     public function store(Service $service)
@@ -63,11 +64,17 @@ class ListeService extends Component
     }
     public function render()
     {
-
+        $word = '%' . $this->search . '%';
+    
+    if (!empty($this->search)) {
+      $listeServices = Service::where('nom', 'like', $word)->paginate(5);
+    } else {
+      $listeServices = Service::latest()->paginate(10);
+    }
               // pour changer la langue en français
       Carbon::setLocale('fr');
 
-        $listeServices = Service::latest()->paginate(10);
+        //$listeServices = Service::latest()->paginate(10);
 
         // liste des departements
         $listeDepartements = Departement::all();
